@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Java素数</title>
+      <link href="2021/01/20/Java%E7%B4%A0%E6%95%B0/"/>
+      <url>2021/01/20/Java%E7%B4%A0%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="Part2-素数判断"><a href="#Part2-素数判断" class="headerlink" title="Part2 素数判断"></a>Part2 素数判断</h2><h3 id="分析一波"><a href="#分析一波" class="headerlink" title="分析一波"></a>分析一波</h3><blockquote><p>素数：质数，只能被1和自身整除的数字</p></blockquote><ol><li>判断是否是质数，只用判断除1和本身之外是否还有其他因子，如果有则不是质数</li><li>通过简单的数学知识我们可以知道，只需要判断到根号即可，也就是说我们减少了一半的工作</li><li>利用for循环和flag来进行逐一判断</li></ol><h3 id="java的输入代码"><a href="#java的输入代码" class="headerlink" title="java的输入代码"></a>java的输入代码</h3><ul><li>有一个Scanner类对象来监控键盘的录入情况</li><li>Scanner附属于标准输入流System.in </li><li>常用的next方法：</li><li>nextInt()：输入整数</li><li>nextDouble()：输入双精度数</li><li>nextFloat()：输入浮点数</li><li>nextLine()：输入字符串,可以接受空格或者tab，以enter结束</li><li>next()输入字符串，以空格或tab结束</li></ul><ul><li>定义一个对象s<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Scanner s &#x3D; new Scanner(System.in)</span><br></pre></td></tr></table></figure></li><li>定义相应变量接受输入<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String name &#x3D; s.nextLine();</span><br><span class="line">int age &#x3D; s.nextInt();</span><br><span class="line">double weight &#x3D; s.nextDouble();</span><br></pre></td></tr></table></figure><h3 id="完整代码："><a href="#完整代码：" class="headerlink" title="完整代码："></a>完整代码：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*</span><br><span class="line"> *for循环找出1000以内的所有素数,每八个一行</span><br><span class="line"> *素数：质数，只能被1和自身整除的数字</span><br><span class="line"> *求余数x%i</span><br><span class="line"> *j&lt;i  or j&lt;&#x3D;sqrt(i)</span><br><span class="line"> *&#x2F;</span><br><span class="line">package IsPrime;</span><br><span class="line"></span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class IsPrime &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">&#x2F;&#x2F; 开始</span><br><span class="line">int flag &#x3D; 0; &#x2F;&#x2F; 计数器，从0开始计数</span><br><span class="line">for (int i &#x3D; 2; i &lt; 1000; i++) &#123;</span><br><span class="line">boolean isPrime &#x3D; true; &#x2F;&#x2F; 标记符，判断i是否为素数</span><br><span class="line">&#x2F;&#x2F; 使用sqrt(i)时一定要等号，例如数字4</span><br><span class="line">for (int j &#x3D; 2; j &lt;&#x3D; Math.sqrt(i); j++) &#123; &#x2F;&#x2F; or j&lt;i</span><br><span class="line">if (i % j &#x3D;&#x3D; 0) &#123; &#x2F;&#x2F; 没有余数说明不是素数</span><br><span class="line">isPrime &#x3D; false;</span><br><span class="line">break;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 判断一行有多少个数</span><br><span class="line">if (isPrime) &#123;</span><br><span class="line">flag++;</span><br><span class="line">System.out.print(&quot; &quot; + i); &#x2F;&#x2F; 以空格分开数字</span><br><span class="line">if (flag % 8 &#x3D;&#x3D; 0) &#123; &#x2F;&#x2F; 因为从零开始计数，且前面先加了1</span><br><span class="line">System.out.println(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 结束</span><br><span class="line">&#x2F;&#x2F; 判断输入的数字</span><br><span class="line">try (Scanner scanner &#x3D; new Scanner(System.in)) &#123;</span><br><span class="line">System.out.println(&quot;请输入一个数字：&quot;);</span><br><span class="line">Integer num &#x3D; scanner.nextInt();</span><br><span class="line">boolean shi &#x3D; true;</span><br><span class="line">&#x2F;&#x2F; 根号需要等号</span><br><span class="line">for (int i &#x3D; 2; i &lt;&#x3D; Math.sqrt(num); i++) &#123;</span><br><span class="line">if (num % i &#x3D;&#x3D; 0) &#123; &#x2F;&#x2F; 没有余数说明不是素数</span><br><span class="line">shi &#x3D; false;</span><br><span class="line">break;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(shi ? num + &quot;是素数&quot; : num + &quot;不是素数&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; over</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 方法体结束</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;类结束</span><br><span class="line"></span><br></pre></td></tr></table></figure></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> 素数 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java基础</title>
+      <link href="2021/01/20/Java%E5%9F%BA%E7%A1%80/"/>
+      <url>2021/01/20/Java%E5%9F%BA%E7%A1%80/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="Part1-基础"><a href="#Part1-基础" class="headerlink" title="Part1 基础"></a>Part1 基础</h2><ul><li><p>Java的加载与运行</p></li><li><p>*.java ：一个程序的源文件</p></li><li><p>javac.exe： 进行编译操作，会生成class文件</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;DOS</span><br><span class="line">javac HelloWorld.java</span><br><span class="line">&#x2F;&#x2F;---&gt; 查看文件夹会发现多出来一个HelloWorld.class文件</span><br></pre></td></tr></table></figure></li><li><p>java ：运行class</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java HelloWorld</span><br><span class="line">&#x2F;&#x2F;注意此处只需要文件名不需要后缀</span><br></pre></td></tr></table></figure></li><li><p>Java的注释</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- &#x2F;&#x2F; 单行注释</span><br><span class="line"></span><br><span class="line">- &#x2F;*</span><br><span class="line">    多行注释</span><br><span class="line">    多行注释</span><br><span class="line">  *&#x2F;</span><br><span class="line"></span><br><span class="line">- &#x2F;**</span><br><span class="line">  *  javadoc可提取的注释</span><br><span class="line">  *  javadoc.exe根据该注释生成帮助文档</span><br><span class="line">  *&#x2F;</span><br></pre></td></tr></table></figure></li><li><p>public class 和 class的区别</p><ul><li>public class<br>公开的类，类名必须和源文件名保持一致</li><li>class<br>一个源文件中可定义多个class，javac编译之后会生成多个class文件</li></ul></li><li><p>HelloWorld</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;定义一个名为HelloWorld的公开的类</span><br><span class="line">&#x2F;&#x2F;类体中不能直接编写java语句【除声明变量之外】</span><br><span class="line">public class HelloWorld&#123;</span><br><span class="line">&#x2F;*以下是一个程序的“主方法”，是程序的执行入口</span><br><span class="line">  static静态的</span><br><span class="line">  void空的</span><br><span class="line">  main 方法</span><br><span class="line">  (String[] args) 名为main的方法的形式参数列表&#x2F;&#x2F;(String[] adasdasd)</span><br><span class="line">*&#x2F;</span><br><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">&#x2F;&#x2F;方法体</span><br><span class="line">&#x2F;&#x2F;Java的输出语句，加ln表示换行，不加不换行</span><br><span class="line">System.out.println(&quot;Hello World!&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3></li><li><p>标识符<br>  可表示的元素：类名、方法名、变量名、接口名、常量名</p></li><li><p>标识符的命名规则  </p><ul><li>只能由“数字、字母、下划线_、美元符号$”组成    </li><li>不能以数字开头</li><li>严格区分大小写</li><li>关键字不能做标识符</li><li>理论上无长度限制</li></ul></li><li><p>命名规范</p><ul><li>见名知意</li><li>遵守驼峰命名方式</li><li>类名、接口名：首字母大写，后面每个单词的首字母大写</li><li>变量名、方法名：首字母小写，后面的每个单词的首字母大写</li><li>常量名：全部大写</li></ul></li></ul><h3 id="字面值（常量）"><a href="#字面值（常量）" class="headerlink" title="字面值（常量）"></a>字面值（常量）</h3><ul><li>Java中的所有的字符串型的字面值必须使用””括起来</li><li>字符型的字面值使用半角单引号’’</li><li>整数、浮点数</li><li>布尔值：true、false</li></ul><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><blockquote><p>变量的作用域：<br>出了大括号就不行了。即作用域为一个大括号内。</p></blockquote><ul><li>局部变量</li></ul><ul><li>在方法体当中声明的变量叫做局部变量</li></ul><ul><li>成员变量</li></ul><ul><li>在方法体外【类体之内】声明的变量叫做成员变量</li></ul><blockquote><p>在不同的作用域当中变量名可以重名<br>Java 遵循就近原则，即访问距离最近的变量</p></blockquote><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><blockquote><p>类似于c</p></blockquote><ul><li>类型转换<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">long x&#x3D;46546;</span><br><span class="line">&#x2F;&#x2F;转换: </span><br><span class="line">y&#x3D;(int)x;</span><br><span class="line">&#x2F;&#x2F;有时会有精度损失</span><br></pre></td></tr></table></figure></li><li>关于byte类型<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">byte i &#x3D; 5 &#x2F;&#x2F;可以-128~127</span><br><span class="line">&#x2F;&#x2F;i &#x3D; 128  &#x2F;&#x2F;不可以</span><br><span class="line">i &#x3D; i + 5  &#x2F;&#x2F;不可以</span><br><span class="line">i &#x3D; (byte)(i+5) &#x2F;&#x2F; 可以</span><br><span class="line">i +&#x3D; 5     &#x2F;&#x2F;可以，等同于i &#x3D; (byte)(i+5)</span><br></pre></td></tr></table></figure></li><li>三元运算符  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">布尔表达式 ? (true)表达式1:(false)表达式2</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> 基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="2021/01/07/hello-world/"/>
+      <url>2021/01/07/hello-world/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
